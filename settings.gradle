@@ -1,0 +1,2 @@
+include ':app', ':wandroid_sdk2'
+project(':wandroid_sdk2').projectDir = new File('wandroid_sdk')
