@@ -1,6 +1,5 @@
 package com.mds.wanandroid.ui.information.fragment;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,7 +15,6 @@ import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
-import com.gyf.immersionbar.ImmersionBar;
 import com.mds.wanandroid.R;
 import com.mds.wanandroid.mvp.contract.HomeContract;
 import com.mds.wanandroid.mvp.presenter.HomePresenter;
@@ -41,7 +39,7 @@ import java.util.List;
  * @description:
  * @date : 19/08/28 20:31
  */
-public class HomeFragment extends BaseFragment<HomeContract.IView, HomeContract.IPresenter> implements View.OnClickListener,HomeContract.IView {
+public class HomeFragment extends BaseFragment<HomeContract.IView, HomeContract.IPresenter> implements View.OnClickListener, HomeContract.IView {
 
     private SmartRefreshLayout srfMainRefresh;
 
@@ -200,7 +198,8 @@ public class HomeFragment extends BaseFragment<HomeContract.IView, HomeContract.
             }
             @Override
             public void onPageSelected(int i) {
-                if (!getActivity().isFinishing()){
+
+                if (getActivity()!=null&&!getActivity().isFinishing()){
                     if (bannerlist!=null&&bannerlist.size()>0){
                         GlideUtils.loadBlurry(ivBannerBg,bannerlist.get(i).getImagePath());
                     }
@@ -251,18 +250,6 @@ public class HomeFragment extends BaseFragment<HomeContract.IView, HomeContract.
     }
 
     @Override
-    public Dialog getLoadDialog() {
-        return dialog;
-    }
-
-    @Override
-    public void cancelLoadDialog() {
-        if (dialog!=null&&dialog.isShowing()){
-            dialog.dismiss();
-        }
-
-    }
-    @Override
     public void getMainListSuccess(MainListBean.DataBean dataBean, String type) {
         currPage=dataBean.getCurPage();
         mPageCount=dataBean.getPageCount();
@@ -275,7 +262,7 @@ public class HomeFragment extends BaseFragment<HomeContract.IView, HomeContract.
             if (homeAdapter==null){
 
                 rvMain.setLayoutManager(new LinearLayoutManager(getActivity()));
-                homeAdapter = new HomeAdapter(getActivity(),R.layout.item_home_list,homeList);
+                homeAdapter = new HomeAdapter(getActivity(), R.layout.item_home_list,homeList);
 
                 homeAdapter.setHasStableIds(true);
                 homeAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);

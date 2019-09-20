@@ -83,7 +83,7 @@ public class LoginActivity extends BaseActivity<LoginContract.IView,LoginContrac
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.btn_login){
-//            mPresenter.handleLoginIn();
+            mPresenter.handleLoginIn();
 //            TinkerPatch.with().fetchPatchUpdate(true);
         }
         else if (v.getId()==R.id.tv_register){

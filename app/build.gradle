@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 //apply from: 'tinkerpatch.gradle'
 
 android {
@@ -56,8 +58,12 @@ dependencies {
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     implementation project(':wandroid_sdk2')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 //    // 若使用annotation需要单独引用,对于tinker的其他库都无需再引用
 //    provided("com.tinkerpatch.tinker:tinker-android-anno:1.9.13.3")
 //    implementation'com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.2.13.3'
+}
+repositories {
+    mavenCentral()
 }

@@ -12,23 +12,27 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.mds.wanandroid.R;
 import com.mds.wanandroid.base.BaseActivity;
-import com.mds.wanandroid.base.IBasePresenter;
 import com.mds.wanandroid.mvp.contract.MainContract;
 import com.mds.wanandroid.mvp.presenter.MainPresenter;
 import com.mds.wanandroid.ui.information.fragment.HomeFragment;
+import com.mds.wanandroid.ui.information.fragment.PersonalFragment;
 
-public class MainActivity extends BaseActivity<MainContract.IView,MainContract.IPresenter> implements BottomNavigationBar.OnTabSelectedListener,MainContract.IView{
+public class MainActivity extends BaseActivity<MainContract.IView, MainContract.IPresenter> implements BottomNavigationBar.OnTabSelectedListener, MainContract.IView{
 
     private static final int HOME = 0;
     private static final int PROJECT = 1;
     private static final int NAVIGATION = 2;
-    private static final int ME = 3;
+    private static final int PERSONAL = 3;
     private BottomNavigationBar bottomNavigationBar;
     private LinearLayout flashView;
     private FrameLayout llContent;
 
     // Fragment管理器，和执行器
     private FragmentManager mManager;
+    private Fragment mHomeFrg;
+    private Fragment mProjectFrg;
+    private Fragment mNavigationFrg;
+    private Fragment mPersonalFrg;
 
     private FragmentTransaction mTransaction;
     @Override
@@ -93,14 +97,42 @@ public class MainActivity extends BaseActivity<MainContract.IView,MainContract.I
         bottomNavigationBar.selectTab(0);
     }
 
+    private void hideFragment(FragmentTransaction fragmentTransaction){
+        if(mHomeFrg!=null){
+            fragmentTransaction.hide(mHomeFrg);
+        }
+        if(mProjectFrg!=null){
+            fragmentTransaction.hide(mProjectFrg);
+        }
+        if(mNavigationFrg!=null){
+            fragmentTransaction.hide(mNavigationFrg);
+        }
+        if(mPersonalFrg!=null){
+            fragmentTransaction.hide(mPersonalFrg);
+        }
+    }
     @Override
     public void onTabSelected(int position) {
         mTransaction = mManager.beginTransaction();
+        hideFragment(mTransaction);
         switch (position){
             case HOME:
-                Fragment homeFrg = HomeFragment.newInstance();
-                mTransaction.add(R.id.ll_content,homeFrg);
-//                mTransaction.show(homeFrg);
+                if(mHomeFrg==null){
+                     mHomeFrg = HomeFragment.newInstance();
+                     mTransaction.add(R.id.ll_content,mHomeFrg);
+                }else{
+                    mTransaction.show(mHomeFrg);
+                }
+                break;
+            case PROJECT:break;
+            case NAVIGATION:break;
+            case PERSONAL:
+                if(mPersonalFrg==null){
+                    mPersonalFrg = PersonalFragment.newInstance();
+                    mTransaction.add(R.id.ll_content,mPersonalFrg);
+                }else{
+                    mTransaction.show(mPersonalFrg);
+                }
                 break;
         }
         mTransaction.commit();

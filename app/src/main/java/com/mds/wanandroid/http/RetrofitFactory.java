@@ -14,7 +14,6 @@ import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -103,7 +102,7 @@ public class RetrofitFactory {
      * @param lifecycleTransformer
      * @param scheduler
      */
-    public void login(String username, String  password, LifecycleTransformer<Long> lifecycleTransformer,BaseObserver<CurrencyBean.DataBean> scheduler) {
+    public void login(String username, String  password, LifecycleTransformer<Long> lifecycleTransformer, BaseObserver<CurrencyBean.DataBean> scheduler) {
         API()
                 .login(username,password)
                 .doOnDispose(new Action() {
@@ -117,7 +116,21 @@ public class RetrofitFactory {
                 .subscribe(scheduler);
     }
 
-    public void register(String username, String  password,String repassword ,LifecycleTransformer<Long> lifecycleTransformer,BaseObserver<CurrencyBean.DataBean> scheduler) {
+    public void loginOut(LifecycleTransformer<Long> lifecycleTransformer, BaseObserver<CurrencyBean.DataBean> observer) {
+        API()
+                .loginOut()
+                .doOnDispose(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        MyLogger.dLog().e("Unsubscribing subscription from loginOut()");
+                    }
+                })
+                .compose(threadTransformer())
+                .compose(lifecycleTransformer)
+                .subscribe(observer);
+    }
+
+    public void register(String username, String  password, String repassword , LifecycleTransformer<Long> lifecycleTransformer, BaseObserver<CurrencyBean.DataBean> scheduler) {
         API()
                 .register(username,password,repassword)
                 .compose(threadTransformer())

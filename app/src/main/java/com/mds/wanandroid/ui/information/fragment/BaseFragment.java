@@ -4,11 +4,9 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 
 import com.mds.wanandroid.base.IBasePresenter;
 import com.mds.wanandroid.base.IBaseView;
@@ -20,7 +18,7 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
  * @description:
  * @date : 19/08/28 17:35
  */
-public abstract class BaseFragment<V extends IBaseView,P extends IBasePresenter> extends RxFragment implements IBaseView{
+public abstract class BaseFragment<V extends IBaseView,P extends IBasePresenter> extends RxFragment implements IBaseView {
 
     protected P presenter;
     protected View rootView;// 缓存Fragment view
@@ -46,6 +44,20 @@ public abstract class BaseFragment<V extends IBaseView,P extends IBasePresenter>
     protected abstract int getLayout();
     protected abstract void initView();
     protected abstract void initData(Bundle savedInstanceState);
+
+    @Override
+    public Dialog getLoadDialog() {
+        return dialog;
+    }
+
+    @Override
+    public void cancelLoadDialog() {
+        if (dialog!=null&&dialog.isShowing()){
+            dialog.dismiss();
+        }
+
+    }
+
     @Override
     public void onDestroy() {
         if(presenter!=null){
