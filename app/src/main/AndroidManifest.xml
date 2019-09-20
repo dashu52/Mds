@@ -24,6 +24,12 @@
             android:screenOrientation="portrait">
 
         </activity>
+        <activity
+            android:name=".ui.information.activity.ArticleActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+
+        </activity>
         <activity android:name=".common.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

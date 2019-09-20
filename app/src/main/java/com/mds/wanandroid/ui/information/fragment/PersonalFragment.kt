@@ -12,6 +12,7 @@ import com.mds.wanandroid.bean.CurrencyBean
 import com.mds.wanandroid.mvp.contract.PersonalContract
 import com.mds.wanandroid.mvp.presenter.PersonalPresenter
 import com.mds.wanandroid.ui.information.activity.LoginActivity
+import com.mds.wanandroid.ui.information.activity.ArticleActivity
 import com.mds.wanandroid.utils.MyLogger
 import com.mds.wanandroid.utils.SpUtils
 import com.trello.rxlifecycle2.LifecycleTransformer
@@ -97,8 +98,6 @@ class PersonalFragment : BaseFragment<PersonalContract.IView, PersonalContract.I
 
     override fun onClick(v: View?) {
         when(v?.id){
-
-
             tv_login.id->startLoginAct()
             iv_login_out.id->presenter.loginOut()
             ll_collect.id->collect()
@@ -114,7 +113,12 @@ class PersonalFragment : BaseFragment<PersonalContract.IView, PersonalContract.I
 
     }
     fun myblog(){
-
+        val it = Intent()
+        val cn = activity?.let { ComponentName(activity, ArticleActivity::class.java)}
+        it.setComponent(cn)
+        it.putExtra("title", "大树的博客")
+        it.putExtra("url", "http://qinzishuai.cn")
+        activity?.startActivity(it)
     }
 
     fun startLoginAct(){
