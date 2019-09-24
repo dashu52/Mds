@@ -137,4 +137,26 @@ public class RetrofitFactory {
                 .compose(lifecycleTransformer)
                 .subscribe(scheduler);
     }
+
+    public void collectIn(String id, LifecycleTransformer<Long> lifecycleTransformer, BaseObserver<CurrencyBean.DataBean> scheduler) {
+        API()
+                .collectIn(id)
+                .compose(threadTransformer())
+                .compose(lifecycleTransformer)
+                .subscribe(scheduler);
+    }
+    public void cancelCollect(String id, LifecycleTransformer<Long> lifecycleTransformer, BaseObserver<CurrencyBean.DataBean> scheduler) {
+        API()
+                .cancelCollect(id)
+                .compose(threadTransformer())
+                .compose(lifecycleTransformer)
+                .subscribe(scheduler);
+    }
+    public void getMyCollect(int page,LifecycleTransformer<Long> lifecycleTransformer, BaseObserver<CurrencyBean.DataBean> scheduler) {
+        API()
+                .getMyCollect(page)
+                .compose(threadTransformer())
+                .compose(lifecycleTransformer)
+                .subscribe(scheduler);
+    }
 }

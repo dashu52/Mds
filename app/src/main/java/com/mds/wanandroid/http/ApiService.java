@@ -3,6 +3,7 @@ package com.mds.wanandroid.http;
 import com.mds.wanandroid.bean.CurrencyBean;
 import com.mds.wanandroid.ui.information.bean.BannerBean;
 import com.mds.wanandroid.ui.information.bean.MainListBean;
+import com.mds.wanandroid.ui.information.bean.MyCollectBean;
 
 import java.util.List;
 
@@ -63,4 +64,26 @@ public interface ApiService {
      */
     @GET("banner/json")
     Observable<BaseResponse<List<BannerBean.DataBean>>> getBanner();
+
+    /****
+     * 站内收藏
+     * @param id
+     * @return
+     */
+    @POST("lg/collect/{id}/json")
+    Observable<BaseResponse<CurrencyBean.DataBean>> collectIn(@Path("id") String id);
+    /****
+     * 取消收藏
+     * @param id
+     * @return
+     */
+    @POST("lg/uncollect_originId/{id}/json")
+    Observable<BaseResponse<CurrencyBean.DataBean>> cancelCollect(@Path("id") String id);
+
+    /***
+     * 我的收藏
+     * @return
+     */
+    @GET("lg/collect/list/{page}/json")
+    Observable<BaseResponse<MyCollectBean.DataBean>> getMyCollect(@Path("page") int page);
 }

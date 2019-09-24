@@ -1,8 +1,11 @@
 package com.mds.wanandroid.http;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.google.gson.JsonParseException;
+import com.mds.wanandroid.common.APP;
+import com.mds.wanandroid.ui.information.activity.LoginActivity;
 import com.mds.wanandroid.utils.CommonUtil;
 import com.mds.wanandroid.utils.MyLogger;
 
@@ -155,6 +158,9 @@ public abstract class BaseObserver<T> implements Observer<BaseResponse<T>> {
      */
     protected abstract void onFailure(String error, boolean isNetWorkError) throws Exception;
     public  static  void startLogin(){
+        Intent intent=new Intent(APP.getContext(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        APP.getContext().startActivity(intent);
     }
 
     /**

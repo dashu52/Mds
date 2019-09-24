@@ -14,6 +14,7 @@ import com.mds.wanandroid.mvp.presenter.PersonalPresenter
 import com.mds.wanandroid.ui.information.activity.LoginActivity
 import com.mds.wanandroid.ui.information.activity.ArticleActivity
 import com.mds.wanandroid.ui.information.activity.AboutActivity
+import com.mds.wanandroid.ui.information.activity.CollectActivity
 import com.mds.wanandroid.utils.MyLogger
 import com.mds.wanandroid.utils.SpUtils
 import com.trello.rxlifecycle2.LifecycleTransformer
@@ -109,6 +110,10 @@ class PersonalFragment : BaseFragment<PersonalContract.IView, PersonalContract.I
 
     fun collect(){
         MyLogger.dLog().d("click collect")
+        val it = Intent()
+        val cn = activity?.let { ComponentName(activity, CollectActivity::class.java)}
+        it.setComponent(cn)
+        activity?.startActivity(it)
     }
     fun about(){
         val it = Intent()
