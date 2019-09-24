@@ -150,8 +150,7 @@ public class CollectActivity extends BaseActivity<CollectContract.IView,CollectC
                 if(view.getId()==R.id.btnDelete){
                     SwipeMenuLayout swipeMenuLayout = (SwipeMenuLayout) adapter.getViewByPosition(mRV,position,R.id.SwipeMenuLayout);
                     swipeMenuLayout.smoothClose();
-                    mDatasBeans.remove(position);
-                    mAdapter.notifyDataSetChanged();
+                    mPresenter.cancelCollect(position,mDatasBeans.get(position).getOriginId()+"");
                 }
             }
         });

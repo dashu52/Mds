@@ -23,16 +23,19 @@ public class CollectPresenter extends BasePresenterImpl<CollectContract.IView> i
         if(mView==null){
             MyLogger.dLog().e("mView==null return");
         }
+        mView.getLoadDialog().show();
         mModel.cancelCollect(id,mView.getTransformer(),new OnLoadDatasListener<CurrencyBean.DataBean>(){
 
             @Override
             public void onSuccess(CurrencyBean.DataBean dataBean) {
                 mView.onCancelCollectSuccess(position);
+                mView.getLoadDialog().dismiss();
             }
 
             @Override
             public void onFail(String error) {
                 mView.onCancelCollectFail(error);
+                mView.getLoadDialog().dismiss();
             }
         });
     }
