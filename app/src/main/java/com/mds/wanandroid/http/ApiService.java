@@ -4,6 +4,7 @@ import com.mds.wanandroid.bean.CurrencyBean;
 import com.mds.wanandroid.ui.information.bean.BannerBean;
 import com.mds.wanandroid.ui.information.bean.MainListBean;
 import com.mds.wanandroid.ui.information.bean.MyCollectBean;
+import com.mds.wanandroid.ui.information.bean.NavigateBean;
 import com.mds.wanandroid.ui.information.bean.ProjectListBean;
 import com.mds.wanandroid.ui.information.bean.ProjectTitleBean;
 
@@ -105,4 +106,11 @@ public interface ApiService {
      */
     @GET("project/list/{page}/json")
     Observable<BaseResponse<ProjectListBean.DataBean>> getProjectList(@Path("page") int page, @Query("cid") String id);
+
+    /***
+     * 获取导航lsit
+     * @return
+     */
+    @GET("navi/json")
+    Observable<BaseResponse<List<NavigateBean.DataBean>>> getNavigateList();
 }

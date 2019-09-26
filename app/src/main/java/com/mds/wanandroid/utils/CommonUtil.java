@@ -1,8 +1,11 @@
 package com.mds.wanandroid.utils;
 
+import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 
 import com.mds.wanandroid.common.APP;
+import com.mds.wanandroid.ui.information.activity.ArticleActivity;
 
 
 /***
@@ -22,4 +25,14 @@ public class CommonUtil {
         }
         toast.show();
     }
+
+    public  static  void  startArticleDetail(Context context, String title, String url){
+
+        Intent intent =new Intent(context, ArticleActivity.class);
+        intent.putExtra("title",title);
+        intent.putExtra("url",url);
+        context.startActivity(intent);
+
+    }
+
 }

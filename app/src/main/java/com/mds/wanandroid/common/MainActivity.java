@@ -15,6 +15,7 @@ import com.mds.wanandroid.base.BaseActivity;
 import com.mds.wanandroid.mvp.contract.MainContract;
 import com.mds.wanandroid.mvp.presenter.MainPresenter;
 import com.mds.wanandroid.ui.information.fragment.HomeFragment;
+import com.mds.wanandroid.ui.information.fragment.NavigationFragment;
 import com.mds.wanandroid.ui.information.fragment.PersonalFragment;
 import com.mds.wanandroid.ui.information.fragment.ProjectFragment;
 import com.trello.rxlifecycle2.LifecycleTransformer;
@@ -134,7 +135,14 @@ public class MainActivity extends BaseActivity<MainContract.IView, MainContract.
                     mTransaction.show(mProjectFrg);
                 }
                 break;
-            case NAVIGATION:break;
+            case NAVIGATION:
+                if(mNavigationFrg==null){
+                    mNavigationFrg = NavigationFragment.newInstance();
+                    mTransaction.add(R.id.ll_content,mNavigationFrg);
+                }else{
+                    mTransaction.show(mNavigationFrg);
+                }
+                break;
             case PERSONAL:
                 if(mPersonalFrg==null){
                     mPersonalFrg = PersonalFragment.newInstance();

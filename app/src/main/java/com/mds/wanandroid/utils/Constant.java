@@ -21,4 +21,13 @@ public class Constant {
      * 上拉加载更多数据
      */
     public static final String PULL_UP_LOAD_MORE = "load_more_pull_up";
+
+    /**
+     * 文章类别名
+     */
+    public static final int ARTICLE_CATEGORY = 0;
+    /**
+     * 文章条目名
+     */
+    public static final int ARTICLE_ITEM = 1;
 }

@@ -3,6 +3,7 @@ package com.mds.wanandroid.http;
 import com.mds.wanandroid.bean.CurrencyBean;
 import com.mds.wanandroid.ui.information.bean.BannerBean;
 import com.mds.wanandroid.ui.information.bean.MainListBean;
+import com.mds.wanandroid.ui.information.bean.NavigateBean;
 import com.mds.wanandroid.ui.information.bean.ProjectListBean;
 import com.mds.wanandroid.ui.information.bean.ProjectTitleBean;
 import com.mds.wanandroid.utils.MyLogger;
@@ -171,6 +172,13 @@ public class RetrofitFactory {
     public void getProjectList(int page,String id,LifecycleTransformer<Long> lifecycleTransformer, BaseObserver<ProjectListBean.DataBean> scheduler) {
         API()
                 .getProjectList(page,id)
+                .compose(threadTransformer())
+                .compose(lifecycleTransformer)
+                .subscribe(scheduler);
+    }
+    public void getNavigateList(LifecycleTransformer<Long> lifecycleTransformer, BaseObserver<List<NavigateBean.DataBean>> scheduler) {
+        API()
+                .getNavigateList()
                 .compose(threadTransformer())
                 .compose(lifecycleTransformer)
                 .subscribe(scheduler);
