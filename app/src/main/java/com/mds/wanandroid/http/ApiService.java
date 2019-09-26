@@ -4,6 +4,8 @@ import com.mds.wanandroid.bean.CurrencyBean;
 import com.mds.wanandroid.ui.information.bean.BannerBean;
 import com.mds.wanandroid.ui.information.bean.MainListBean;
 import com.mds.wanandroid.ui.information.bean.MyCollectBean;
+import com.mds.wanandroid.ui.information.bean.ProjectListBean;
+import com.mds.wanandroid.ui.information.bean.ProjectTitleBean;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * @author duanjianlin
@@ -86,4 +89,20 @@ public interface ApiService {
      */
     @GET("lg/collect/list/{page}/json")
     Observable<BaseResponse<MyCollectBean.DataBean>> getMyCollect(@Path("page") int page);
+
+    /***
+     * 获取项目模块的title
+     * @return
+     */
+    @GET("project/tree/json")
+    Observable<BaseResponse<List<ProjectTitleBean.DataBean>>> getProjectTitle();
+
+    /***
+     * 获取项目模块的内容
+     * @param page
+     * @param id
+     * @return
+     */
+    @GET("project/list/{page}/json")
+    Observable<BaseResponse<ProjectListBean.DataBean>> getProjectList(@Path("page") int page, @Query("cid") String id);
 }

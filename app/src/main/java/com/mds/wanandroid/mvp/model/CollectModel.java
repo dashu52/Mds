@@ -14,20 +14,6 @@ import com.trello.rxlifecycle2.LifecycleTransformer;
  */
 public class CollectModel {
 
-    public void collectIn(String id, LifecycleTransformer<Long> lifecycleTransformer, OnLoadDatasListener<CurrencyBean.DataBean> loadDatasListener){
-        RetrofitFactory.getInstence().collectIn(id,lifecycleTransformer,new BaseObserver<CurrencyBean.DataBean>(){
-
-            @Override
-            protected void onFailure(String error, boolean isNetWorkError) throws Exception {
-                loadDatasListener.onFail(error);
-            }
-
-            @Override
-            protected void onSuccees(CurrencyBean.DataBean dataBean) throws Exception {
-                loadDatasListener.onSuccess(dataBean);
-            }
-        });
-    }
 
     public void cancelCollect(String id, LifecycleTransformer<Long> lifecycleTransformer, OnLoadDatasListener<CurrencyBean.DataBean> loadDatasListener){
         RetrofitFactory.getInstence().cancelCollect(id,lifecycleTransformer,new BaseObserver<CurrencyBean.DataBean>(){

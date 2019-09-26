@@ -24,7 +24,6 @@ interface PersonalContract {
          */
         fun LoginOutFail()
 
-        fun getTransformer(): LifecycleTransformer<Long>
     }
 
     interface IPersenter : IBasePresenter<IView>{

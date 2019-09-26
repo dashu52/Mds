@@ -27,6 +27,7 @@ import com.mds.wanandroid.utils.MyLogger;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
@@ -339,5 +340,10 @@ public class HomeFragment extends BaseFragment<HomeContract.IView, HomeContract.
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public LifecycleTransformer<Long> getTransformer() {
+        return this.bindToLifecycle();
     }
 }

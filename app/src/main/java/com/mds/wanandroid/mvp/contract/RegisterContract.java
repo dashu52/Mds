@@ -18,7 +18,6 @@ public interface RegisterContract {
         String getUserName();
         String getPwd1();
         String getPwd2();
-        LifecycleTransformer<Long> getTransformer();
     }
 
     interface IRegisterPresenter extends IBasePresenter<IView>{

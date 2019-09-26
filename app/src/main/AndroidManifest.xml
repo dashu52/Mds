@@ -15,6 +15,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.information.activity.AboutActivity"></activity>
         <activity android:name=".ui.information.activity.RegisterActivity" />
@@ -25,7 +26,8 @@
         <activity
             android:name=".ui.information.activity.ArticleActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"></activity>
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" ></activity>
         <activity android:name=".common.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

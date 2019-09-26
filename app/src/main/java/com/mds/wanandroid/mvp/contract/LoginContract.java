@@ -21,8 +21,6 @@ public interface LoginContract {
         void loginFail(String msg);
         String getUserName();
         String getPwd();
-        LifecycleTransformer<Long> getTransformer();
-//        void bindToLifecycle(Observable<BaseResponse<CurrencyBean.DataBean>> observable);
     }
 
     interface ILoginPresenter extends IBasePresenter<IView>{

@@ -3,6 +3,8 @@ package com.mds.wanandroid.http;
 import com.mds.wanandroid.bean.CurrencyBean;
 import com.mds.wanandroid.ui.information.bean.BannerBean;
 import com.mds.wanandroid.ui.information.bean.MainListBean;
+import com.mds.wanandroid.ui.information.bean.ProjectListBean;
+import com.mds.wanandroid.ui.information.bean.ProjectTitleBean;
 import com.mds.wanandroid.utils.MyLogger;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
@@ -155,6 +157,20 @@ public class RetrofitFactory {
     public void getMyCollect(int page,LifecycleTransformer<Long> lifecycleTransformer, BaseObserver<CurrencyBean.DataBean> scheduler) {
         API()
                 .getMyCollect(page)
+                .compose(threadTransformer())
+                .compose(lifecycleTransformer)
+                .subscribe(scheduler);
+    }
+    public void getProjectTitle(LifecycleTransformer<Long> lifecycleTransformer, BaseObserver<List<ProjectTitleBean.DataBean>> scheduler) {
+        API()
+                .getProjectTitle()
+                .compose(threadTransformer())
+                .compose(lifecycleTransformer)
+                .subscribe(scheduler);
+    }
+    public void getProjectList(int page,String id,LifecycleTransformer<Long> lifecycleTransformer, BaseObserver<ProjectListBean.DataBean> scheduler) {
+        API()
+                .getProjectList(page,id)
                 .compose(threadTransformer())
                 .compose(lifecycleTransformer)
                 .subscribe(scheduler);

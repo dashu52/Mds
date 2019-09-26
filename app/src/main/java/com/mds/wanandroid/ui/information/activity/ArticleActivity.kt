@@ -17,6 +17,7 @@ import com.mds.wanandroid.mvp.presenter.ArticlePresenter
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
+import com.trello.rxlifecycle2.LifecycleTransformer
 
 /**
 
@@ -151,5 +152,9 @@ class ArticleActivity: BaseActivity<ArticleContract.IView, ArticleContract.IPers
             //((ViewGroup)webview.getParent()).removeView(webview);
             webview?.destroy()
         }
+    }
+
+    override fun getTransformer(): LifecycleTransformer<Long> {
+        return this.bindToLifecycle()
     }
 }

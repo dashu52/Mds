@@ -7,9 +7,14 @@ import com.mds.wanandroid.R
 import com.mds.wanandroid.base.BaseActivity
 import com.mds.wanandroid.mvp.contract.AboutContract
 import com.mds.wanandroid.mvp.presenter.AboutPresenter
+import com.trello.rxlifecycle2.LifecycleTransformer
 import kotlinx.android.synthetic.main.activity_about.*
 
 class AboutActivity : BaseActivity<AboutContract.IView,AboutContract.IPresenter>() {
+    override fun getTransformer(): LifecycleTransformer<Long> {
+        return this.bindToLifecycle()
+    }
+
     override fun getLayout(): Int {
         return R.layout.activity_about
     }

@@ -23,7 +23,6 @@ public interface CollectContract {
         void getCollectFail(String error);
 
         int getCurrentPage();
-        LifecycleTransformer<Long> getTransformer();
     }
 
     interface IPresenter extends IBasePresenter<IView>{
