@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.mds.wanandroid.common.APP;
 import com.mds.wanandroid.ui.information.activity.ArticleActivity;
+import com.mds.wanandroid.ui.information.activity.SearchActivity;
 
 
 /***
@@ -34,5 +35,10 @@ public class CommonUtil {
         context.startActivity(intent);
 
     }
+    public  static  void  startSearchActivity(Context context){
 
+        Intent intent =new Intent(context, SearchActivity.class);
+        context.startActivity(intent);
+
+    }
 }

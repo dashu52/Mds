@@ -37,6 +37,8 @@
         </activity>
         <activity android:name=".ui.information.activity.CollectActivity">
         </activity>
+        <activity android:name=".ui.information.activity.SearchActivity">
+        </activity>
     </application>
 
 

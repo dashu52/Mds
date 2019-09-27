@@ -21,6 +21,7 @@ import com.mds.wanandroid.mvp.presenter.HomePresenter;
 import com.mds.wanandroid.ui.information.adapter.HomeAdapter;
 import com.mds.wanandroid.ui.information.bean.BannerBean;
 import com.mds.wanandroid.ui.information.bean.MainListBean;
+import com.mds.wanandroid.utils.CommonUtil;
 import com.mds.wanandroid.utils.DensityUtil;
 import com.mds.wanandroid.utils.GlideUtils;
 import com.mds.wanandroid.utils.MyLogger;
@@ -339,7 +340,9 @@ public class HomeFragment extends BaseFragment<HomeContract.IView, HomeContract.
     }
     @Override
     public void onClick(View v) {
-
+        if(v==llSearch1){
+            CommonUtil.startSearchActivity(getContext());
+        }
     }
 
     @Override

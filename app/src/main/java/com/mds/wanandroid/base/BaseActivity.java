@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.gyf.immersionbar.ImmersionBar;
 import com.mds.wanandroid.utils.DialogUtils;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 /**
@@ -52,5 +53,10 @@ public abstract class BaseActivity<V extends IBaseView,P extends IBasePresenter<
     @Override
     public void cancelLoadDialog() {
         dialog.cancel();
+    }
+
+    @Override
+    public LifecycleTransformer<Long> getTransformer() {
+        return this.bindToLifecycle();
     }
 }

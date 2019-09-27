@@ -183,4 +183,11 @@ public class RetrofitFactory {
                 .compose(lifecycleTransformer)
                 .subscribe(scheduler);
     }
+    public void searchDetail(int page,String K,LifecycleTransformer<Long> lifecycleTransformer, BaseObserver<MainListBean.DataBean> scheduler) {
+        API()
+                .searchDetail(page,K)
+                .compose(threadTransformer())
+                .compose(lifecycleTransformer)
+                .subscribe(scheduler);
+    }
 }

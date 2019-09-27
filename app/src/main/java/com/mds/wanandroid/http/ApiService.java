@@ -113,4 +113,8 @@ public interface ApiService {
      */
     @GET("navi/json")
     Observable<BaseResponse<List<NavigateBean.DataBean>>> getNavigateList();
+
+    @FormUrlEncoded
+    @POST("article/query/{page}/json")
+    Observable<BaseResponse<MainListBean.DataBean>> searchDetail(@Path("page") int page,@Field("k") String k);
 }
